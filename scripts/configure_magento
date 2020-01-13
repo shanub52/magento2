@@ -37,32 +37,32 @@ fi
 #####
 # Deploy Static Content
 #####
-#cd /var/www/magento2/
+cd /var/www/magento2/
 #/usr/bin/php bin/magento module:enable PayUIndia_Payu
-#/usr/bin/php bin/magento setup:upgrade
-#/usr/bin/php bin/magento deploy:mode:set production -s
+/usr/bin/php bin/magento setup:upgrade
+/usr/bin/php bin/magento deploy:mode:set developer -s
 #/usr/bin/php bin/magento setup:static-content:deploy en_US --exclude-theme Magento/luma -f
-#/usr/bin/php bin/magento setup:di:compile
+/usr/bin/php bin/magento setup:di:compile
 
 ################3
-bin/magento setup:install --backend-frontname="adminlogin" \
---key="biY8vdWx4w8KV5Q59380Fejy36l6ssUb" \
---db-host="localhost" \
---db-name="magentodb" \
---db-user="magentouser" \
---db-password="Magento123@" \
---language="en_US" \
---currency="USD" \
---timezone="Asia/Kolkata" \
---use-rewrites=1 \
---use-secure=0 \
---base-url="http://magento2.linuxhilinux.com" \
---admin-user=adminuser \
---admin-password=admin123@ \
---admin-email=admin@newmagento.com \
---admin-firstname=admin \
---admin-lastname=user \
---cleanup-database
+#bin/magento setup:install --backend-frontname="adminlogin" \
+#--key="biY8vdWx4w8KV5Q59380Fejy36l6ssUb" \
+#--db-host="localhost" \
+#--db-name="magentodb" \
+#--db-user="magentouser" \
+#--db-password="Magento123@" \
+#--language="en_US" \
+#--currency="USD" \
+#--timezone="Asia/Kolkata" \
+#--use-rewrites=1 \
+#--use-secure=0 \
+#--base-url="http://magento2.linuxhilinux.com" \
+#--admin-user=adminuser \
+#--admin-password=admin123@ \
+#--admin-email=admin@newmagento.com \
+#--admin-firstname=admin \
+#--admin-lastname=user \
+#--cleanup-database
 
 
 #####
