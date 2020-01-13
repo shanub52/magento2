@@ -33,8 +33,7 @@ if [ ! -d "/var/www/magento2" ]
   then
     mkdir -p /var/www/magento2
     chmod -R 775 /var/www/magento2
-    chown -R nginx:nginx /var/www/html/magento2
+    chown -R nginx:nginx /var/www/magento2
   else
-  	echo "Web directory /var/www/magento already installed..";
+  	echo "Web directory /var/www/magento2 already installed..";
 fi
-

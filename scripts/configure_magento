@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 ######
 # Run Composer install
 ######
@@ -10,30 +8,30 @@ cd /var/www/magento2/
 #####
 # Create Magento media directory
 #####
-if [ -d "/var/www/magento2/pub/media" ]
-  then
-    rm -rf /var/www/magento2/pub/media/
-   # ln -s /home/ubuntu/efs/backupwww/wwwmedia/mediam2 /var/www/html/magento/pub/media
-   # chmod 777 /var/www/html/magento/pub/media
-    chown nginx:nginx /var/www/magento2/pub/media
-  else
-    #ln -s /home/ubuntu/efs/backupwww/wwwmedia/mediam2 /var/www/html/magento/pub/media
-    chmod 777 /var/www/magento2/pub/media
-    chown nginx:nginx /var/www/magento2/pub/media
-fi
+#if [ -d "/var/www/magento2/pub/media" ]
+#  then
+#   rm -rf /var/www/magento2/pub/media/
+#   # ln -s /home/ubuntu/efs/backupwww/wwwmedia/mediam2 /var/www/html/magento/pub/media
+#   # chmod 777 /var/www/magento2/pub/media
+#    chown nginx:nginx /var/www/magento2/pub/media
+#  else
+#    #ln -s /home/ubuntu/efs/backupwww/wwwmedia/mediam2 /var/www/html/magento/pub/media
+#    chmod 777 /var/www/magento2/pub/media
+#    chown nginx:nginx /var/www/magento2/pub/media
+#fi
 #####
 # copy env.php and config.php files
 #####
-if [ -e "/var/www/html/magento/app/etc/env.php" ]
+if [ -e "/var/www/magento2/app/etc/env.php" ]
   then
-    mv -f /var/www/html/magento/app/etc/env.php /var/www/html/magento/app/etc/env.php_bk
-    mv -f /var/www/html/magento/php/env.php /var/www/html/magento/app/etc/env.php
+    mv -f /var/www/magento2/app/etc/env.php /var/www/magento2/app/etc/env.php_bk
+    mv -f /var/www/magento2/php/env.php /var/www/magento2/app/etc/env.php
 fi
 
-if [ -e "/var/www/html/magento/app/etc/config.php" ]
+if [ -e "/var/www/magento2/app/etc/config.php" ]
   then
-    mv -f /var/www/html/magento/app/etc/config.php /var/www/html/magento/app/etc/config.php_bk
-    mv -f /var/www/html/magento/php/config.php /var/www/html/magento/app/etc/config.php
+    mv -f /var/www/magento2/app/etc/config.php /var/www/magento2/app/etc/config.php_bk
+    mv -f /var/www/magento2/php/config.php /var/www/magento2/app/etc/config.php
 fi
 
 #####

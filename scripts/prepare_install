@@ -6,7 +6,7 @@ if [ -d "/var/www/magento2" ]
   then
     mv -f /var/www/magento2 /var/www/magento2.bk
   else
-  	echo "Web directory /var/www/html/magento already installed..";
+  	echo "Web directory /var/www/magento2 already installed..";
 fi
 
 #####
