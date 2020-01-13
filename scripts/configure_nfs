@@ -1,6 +1,0 @@
-#!/bin/bash
-#umount /mnt/nfs
-rm -rf /mnt/nfs
-mkdir /mnt/nfs
-chown www-data:www-data /mnt/nfs
-#mount -t nfs 172.31.39.61:/mnt/nfs nfs

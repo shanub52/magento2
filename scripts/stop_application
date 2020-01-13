@@ -1,8 +1,0 @@
-#!/bin/bash
-#####
-# Remove last archived version
-#####
-rm -rf /var/www/html/magento.bk
-
-export COMPOSER_HOME="/root/.config/composer";
-
