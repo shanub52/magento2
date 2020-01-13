@@ -1,0 +1,79 @@
+#!/bin/bash
+######
+# Run Composer install
+######
+cd /var/www/magento2/
+/usr/bin/composer install
+
+#####
+# Create Magento media directory
+#####
+#if [ -d "/var/www/magento2/pub/media" ]
+#  then
+#   rm -rf /var/www/magento2/pub/media/
+#   # ln -s /home/ubuntu/efs/backupwww/wwwmedia/mediam2 /var/www/html/magento/pub/media
+#   # chmod 777 /var/www/magento2/pub/media
+#    chown nginx:nginx /var/www/magento2/pub/media
+#  else
+#    #ln -s /home/ubuntu/efs/backupwww/wwwmedia/mediam2 /var/www/html/magento/pub/media
+#    chmod 777 /var/www/magento2/pub/media
+#    chown nginx:nginx /var/www/magento2/pub/media
+#fi
+#####
+# copy env.php and config.php files
+#####
+if [ -e "/var/www/magento2/app/etc/env.php" ]
+  then
+    mv -f /var/www/magento2/app/etc/env.php /var/www/magento2/app/etc/env.php_bk
+    mv -f /var/www/magento2/php/env.php /var/www/magento2/app/etc/env.php
+fi
+
+if [ -e "/var/www/magento2/app/etc/config.php" ]
+  then
+    mv -f /var/www/magento2/app/etc/config.php /var/www/magento2/app/etc/config.php_bk
+    mv -f /var/www/magento2/php/config.php /var/www/magento2/app/etc/config.php
+fi
+
+#####
+# Deploy Static Content
+#####
+cd /var/www/magento2/
+/usr/bin/php bin/magento module:enable PayUIndia_Payu
+/usr/bin/php bin/magento setup:upgrade
+/usr/bin/php bin/magento deploy:mode:set production -s
+/usr/bin/php bin/magento setup:static-content:deploy en_US --exclude-theme Magento/luma -f
+#/usr/bin/php bin/magento setup:di:compile
+
+################3
+#bin/magento setup:install --backend-frontname="adminlogin" \
+#--key="biY8vdWx4w8KV5Q59380Fejy36l6ssUb" \
+#--db-host="localhost" \
+#--db-name="magentodb" \
+#--db-user="magentouser" \
+#--db-password="Magento123@" \
+#--language="en_US" \
+#--currency="USD" \
+#--timezone="Asia/Kolkata" \
+#--use-rewrites=1 \
+#--use-secure=0 \
+#--base-url="http://magento2.linuxhilinux.com" \
+#--admin-user=adminuser \
+#--admin-password=admin123@ \
+#--admin-email=admin@newmagento.com \
+#--admin-firstname=admin \
+#--admin-lastname=user \
+#--cleanup-database
+
+
+#####
+# Set permissions 
+#####
+chown -R nginx:nginx /var/www/magento2/var/
+chown nginx:nginx /var/www/magento2
+chmod 777 /var/www/magento2
+find /var/www/magento/ ! -name "media" | xargs -I {} chown nginx:nginx -R {}
+find /var/www/magento2/ ! -name "media" | xargs -I {} chmod 775 -R {}
+chmod -R 777 /var/www/magento2/var/
+mkdir /var/www/magento2/var/cache
+chmod -R 777 /var/www/magento2/var/cache
+chown -R nginx:nginx /var/www/magento2/var/cache
